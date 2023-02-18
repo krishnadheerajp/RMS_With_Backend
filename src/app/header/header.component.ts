@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+user_id:any;
+constructor(public router:Router){ }
+ngOnInit(){
+  this.user_id=localStorage.getItem("user_id");
+}
 
+logout(){
+  localStorage.removeItem("user_id");
+  location.reload();
+  // this.router.navigate(['']);
+}
 }

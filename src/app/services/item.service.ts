@@ -16,6 +16,7 @@ export class ItemService {
   }
   getUserCartItems(){
     this.user_id=localStorage.getItem("user_id");
+    if(this.user_id==null) return this.httpClient.get('http://localhost:8000/api/categories/');
     return this.httpClient.get(`http://localhost:8000/api/productswithcart/${this.user_id}/`);
   }
   removeFromCart(user_id:any,product_id:any){

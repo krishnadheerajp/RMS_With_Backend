@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,7 +8,7 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit{
-  constructor(private UserService:UserService){}
+  constructor(private UserService:UserService, public router:Router){}
   values:any;
   register(values:any){
     // console.log(values);
@@ -27,7 +28,7 @@ export class LoginComponent implements OnInit{
     this.UserService.loginUser(this.values).subscribe((response:any)=>{
   console.log(response);
   localStorage.setItem("user_id", response.user.id);
-  console.log(localStorage.getItem("user_id"));
+  this.router.navigate(['']);
 })
   }
 
