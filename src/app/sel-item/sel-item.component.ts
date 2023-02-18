@@ -1,6 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { ItemService } from '../services/item.service';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sel-item',
@@ -13,44 +14,63 @@ export class SelItemComponent {
   item:any=[];
   data:any;
   user_id:number=Number(localStorage.getItem("user_id"));
-constructor(private itemService:ItemService,private route: ActivatedRoute){}
+constructor(private itemService:ItemService,private route: ActivatedRoute,public router:Router){}
 
 ngOnInit(){
   this.id=Number(this.route.snapshot.paramMap.get('id'));
-  this.itemService.getItem(this.id).subscribe((response:any)=>{
-    this.item=response.selected_item;
-    this.cart=response.cartProducts;
-    console.log(response);
-  })
+  if(this.user_id!=0){
+    this.itemService.getItem(this.id).subscribe((response:any)=>{
+      // console.log(response);
+      this.item=response.selected_item;
+      this.cart=response.cartProducts;
+      // console.log(response);
+    })
+  }
+  else{
+    this.itemService.showItem(this.id).subscribe((response:any)=>{
+      // console.log(response);
+      this.item=response.selected_item;
+      // console.log(response);
+    })
+  }
 }
 addToCart(product_id:any,product_price:any){
-  this.user_id=Number(localStorage.getItem("user_id"));
-  this.data={"user_id":this.user_id,"product_id":product_id,"amount":product_price};
-  console.log(this.data);
-  this.itemService.addtoCartItems(this.data).subscribe((response:any)=>{
-    console.log(response);
-    if(response.success===true){
-      this.cart=response.cartProducts;
-      // console.log(this.cart);
-    }
-  });
-}
-checkInCart(product:any){
-  let cp=this.cart.find((p:any)=>{
-    return p.pivot.user_id==this.user_id && p.pivot.product_id==product.id;
-  })
-  if(cp===undefined){
-    return false;
+  if(this.user_id==0){
+      this.router.navigate(['login']);
   }
-  return true;
-}
-removeFromCart(product_id:any){
-  this.itemService.removeFromCart(this.user_id,product_id).subscribe((response:any)=>{
+  else{
+    this.data={"user_id":this.user_id,"product_id":product_id,"amount":product_price};
+    console.log(this.data);
+    this.itemService.addtoCartItems(this.data).subscribe((response:any)=>{
+      console.log(response);
       if(response.success===true){
         this.cart=response.cartProducts;
         // console.log(this.cart);
       }
-  });
+    });
+  }
 }
+
+  checkInCart(product:any){
+    if(this.user_id!=0){
+      let cp=this.cart.find((p:any)=>{
+        // console.log(p.pivot.user_id==4,p.pivot.product_id==product.id);
+        return p.pivot.user_id==this.user_id && p.pivot.product_id==product.id;
+      })
+      if(cp===undefined){
+        return false;
+      }
+      return true;
+    }
+    return false;
+  }
+  removeFromCart(product_id:any){
+    this.itemService.removeFromCart(this.user_id,product_id).subscribe((response:any)=>{
+        if(response.success===true){
+          this.cart=response.cartProducts;
+          // console.log(this.cart);
+        }
+    });
+  }
 
 }

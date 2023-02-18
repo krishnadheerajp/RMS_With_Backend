@@ -1,5 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { ItemService } from '../services/item.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -7,10 +8,13 @@ import { ItemService } from '../services/item.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent {
-  constructor(private itemService:ItemService){}
+  constructor(private itemService:ItemService,public router:Router){}
   cart:any;
   // Send user id from here
   ngOnInit(){
+    if(localStorage.getItem("user_id")==undefined){
+      this.router.navigate(['login']);
+    }
     this.itemService.getUserCartItems().subscribe((response:any)=>{
       console.log(response);
       this.cart=response.cartProducts;

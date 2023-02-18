@@ -42,15 +42,17 @@ addToCart(product_id:any,product_price:any){
   if(this.user_id==0){
       this.router.navigate(['login']);
   }
-  this.data={"user_id":this.user_id,"product_id":product_id,"amount":product_price};
-  console.log(this.data);
-  this.itemService.addtoCartItems(this.data).subscribe((response:any)=>{
-    console.log(response);
-    if(response.success===true){
-      this.cart=response.cartProducts;
-      // console.log(this.cart);
-    }
-  });
+  else{
+    this.data={"user_id":this.user_id,"product_id":product_id,"amount":product_price};
+    console.log(this.data);
+    this.itemService.addtoCartItems(this.data).subscribe((response:any)=>{
+      console.log(response);
+      if(response.success===true){
+        this.cart=response.cartProducts;
+        // console.log(this.cart);
+      }
+    });
+  }
 }
 
   checkInCart(product:any){

@@ -31,4 +31,7 @@ export class ItemService {
     this.user_id=localStorage.getItem("user_id");
     return this.httpClient.get(`http://localhost:8000/api/product/${this.user_id}/${product_id}`);
   }
+  showItem(product_id:any){
+    return this.httpClient.get(`http://localhost:8000/api/products/${product_id}`);
+  }
 }
