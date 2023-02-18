@@ -47,13 +47,13 @@
                 <div class="row gy-5">
 
                     <div class="col-lg-4 menu-item" *ngFor="let breakfast of breakfastItems;">
-                        <a href="{{breakfast.image}}" class="glightbox"><img src="{{breakfast.image}}"
+                        <a routerLink="item/{{breakfast.id}}" class="glightbox"><img src="{{breakfast.image}}"
                                 class="menu-img img-fluid" alt=""></a>
                         <h4>{{breakfast.name}}</h4>
                         <p class="price">
                             ₹{{breakfast.price}} <br>
                             <button class="btn btn-primary"  *ngIf="checkInCart(breakfast)==false" (click)="addToCart(breakfast.id,breakfast.price)">Add to Cart</button>
-                            <button class="btn btn-primary"  *ngIf="checkInCart(breakfast)==true" (click)="removeFromCart(breakfast.id)">Remove from Cart</button>
+                            <button class="btn btn-secondary"  *ngIf="checkInCart(breakfast)==true" (click)="removeFromCart(breakfast.id)">Remove from Cart</button>
                         </p>
                     </div>
                     <!-- Menu Item -->
@@ -71,14 +71,14 @@
                 <div class="row gy-5">
 
                     <div class="col-lg-4 menu-item" *ngFor="let starter of starterItems">
-                        <a href="{{starter.image}}" class="glightbox"><img src="{{starter.image}}"
+                        <a  routerLink="item/{{starter.id}}" class="glightbox"><img src="{{starter.image}}"
                                 class="menu-img img-fluid" alt=""></a>
                         <h4>{{starter.name}}</h4>
                         <p class="price">
                             ₹{{starter.price}}<br>
-                            <button class="btn btn-primary" (click)="addToCart(starter.id,starter.price)">Add to Cart</button>
+                            <button class="btn btn-primary"  *ngIf="checkInCart(starter)==false" (click)="addToCart(starter.id,starter.price)">Add to Cart</button>
+                            <button class="btn btn-secondary"  *ngIf="checkInCart(starter)==true" (click)="removeFromCart(starter.id)">Remove from Cart</button>
                         </p>
-                        <p *ngIf="starter.id==pid">{{message}}</p>
                     </div><!-- Menu Item -->
                 </div>
             </div><!-- End Starter Menu Content -->
@@ -94,15 +94,15 @@
                 <div class="row gy-5">
 
                     <div class="col-lg-4 menu-item" *ngFor="let lunch of lunchItems">
-                        <a href="{{lunch.image}}" class="glightbox"><img src="{{lunch.image}}"
+                        <a routerLink="item/{{lunch.id}}" class="glightbox"><img src="{{lunch.image}}"
                                 class="menu-img img-fluid" alt=""></a>
                         <h4>{{lunch.name}}</h4>
 
                         <p class="price">
                             ₹{{lunch.price}}<br>
-                            <button class="btn btn-primary" (click)="addToCart(lunch.id,lunch.price)">Add to Cart</button>
+                            <button class="btn btn-primary"  *ngIf="checkInCart(lunch)==false" (click)="addToCart(lunch.id,lunch.price)">Add to Cart</button>
+                            <button class="btn btn-secondary"  *ngIf="checkInCart(lunch)==true" (click)="removeFromCart(lunch.id)">Remove from Cart</button>
                         </p>
-                        <p *ngIf="lunch.id==pid">{{message}}</p>
                     </div><!-- Menu Item -->
 
                 </div>
@@ -118,15 +118,15 @@
                 <div class="row gy-5">
 
                     <div class="col-lg-4 menu-item" *ngFor="let drink of drinkItems">
-                        <a href="{{drink.image}}" class="glightbox"><img src="{{drink.image}}"
+                        <a routerLink="item/{{drink.id}}" class="glightbox"><img src="{{drink.image}}"
                                 class="menu-img img-fluid" alt=""></a>
                         <h4>{{drink.name}}</h4>
 
                         <p class="price">
                             ₹{{drink.price}}<br>
-                            <button class="btn btn-primary" (click)="addToCart(drink.id,drink.price)">Add to Cart</button>
+                            <button class="btn btn-primary"  *ngIf="checkInCart(drink)==false" (click)="addToCart(drink.id,drink.price)">Add to Cart</button>
+                            <button class="btn btn-secondary"  *ngIf="checkInCart(drink)==true" (click)="removeFromCart(drink.id)">Remove from Cart</button>
                         </p>
-                        <p *ngIf="drink.id==pid">{{message}}</p>
                     </div><!-- Menu Item -->
                 </div>
             </div><!-- End Dinner Menu Content -->

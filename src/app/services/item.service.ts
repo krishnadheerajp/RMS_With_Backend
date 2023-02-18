@@ -26,4 +26,8 @@ export class ItemService {
     let headers={"Content-Type":"application/json"};
     return this.httpClient.put(`http://localhost:8000/api/cart/update/${id}`,data,{headers});
   }
+  getItem(product_id:any){
+    this.user_id=localStorage.getItem("user_id");
+    return this.httpClient.get(`http://localhost:8000/api/product/${this.user_id}/${product_id}`);
+  }
 }

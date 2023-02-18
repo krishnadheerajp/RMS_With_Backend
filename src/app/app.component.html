@@ -1,5 +1,5 @@
 <!-- <router-outlet></router-outlet> -->
-<div *ngIf="!router.url.includes('login') && !router.url.includes('login#') && !router.url.includes('cart')">
+<div *ngIf="!router.url.includes('login') && !router.url.includes('login#') && !router.url.includes('cart') && !router.url.includes('item')">
 <app-header></app-header>
 <app-home></app-home>
 <app-about></app-about>
@@ -21,4 +21,9 @@
     <app-footer></app-footer>
 </div>
 
+<div *ngIf="router.url.includes('item')">
+    <app-header></app-header>
+<router-outlet></router-outlet>
+    <app-footer></app-footer>
+</div>
 

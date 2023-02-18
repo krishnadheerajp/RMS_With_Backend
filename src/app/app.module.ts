@@ -16,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CartComponent } from './cart/cart.component';
+import { SelItemComponent } from './sel-item/sel-item.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { CartComponent } from './cart/cart.component';
     AboutComponent,
     HeaderComponent,
     FooterComponent,
-    CartComponent
+    CartComponent,
+    SelItemComponent
   ],
   imports: [
     BrowserModule,
