@@ -34,4 +34,8 @@ export class ItemService {
   showItem(product_id:any){
     return this.httpClient.get(`http://localhost:8000/api/products/${product_id}`);
   }
+  orderItems(items:any){
+    let headers={"Content-Type":"application/json"};
+    return this.httpClient.put(`http://localhost:8000/api/orderitems/${items}`,items,{headers});
+  }
 }

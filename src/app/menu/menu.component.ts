@@ -21,7 +21,7 @@ cart:any;
 constructor(private itemService:ItemService,public router:Router){}
 ngOnInit(){
   this.itemService.getUserCartItems().subscribe((response:any)=>{
-    // console.log(response);
+    console.log(response);
     if(this.user_id==0){
       this.breakfastItems=response[0].products;
       this.starterItems=response[1].products;
