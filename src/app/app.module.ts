@@ -17,6 +17,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CartComponent } from './cart/cart.component';
 import { SelItemComponent } from './sel-item/sel-item.component';
+import { OrderComponent } from './order/order.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { SelItemComponent } from './sel-item/sel-item.component';
     HeaderComponent,
     FooterComponent,
     CartComponent,
-    SelItemComponent
+    SelItemComponent,
+    OrderComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

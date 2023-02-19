@@ -63,8 +63,9 @@
                 data-aos="zoom-out" data-aos-delay="200"></div>
 
             <div class="col-lg-8 d-flex align-items-center reservation-form-bg">
-                <form #f="ngForm" novalidate (ngSubmit)="save(f.value, f.form.valid)" role="form" class="php-email-form"
+                <form #f="ngForm" novalidate role="form" class="php-email-form"
                     data-aos="fade-up" data-aos-delay="100">
+                    <h2 class="text-center">{{message}}</h2>
                     <div class="row gy-4">
                         <div class="col-lg-4 col-md-6">
                             <input type="text" name="name" [(ngModel)]="user.name" #name="ngModel" required
@@ -90,14 +91,14 @@
                         </div>
                         <div class="col-lg-4 col-md-6">
                             <input type="text" name="date" [(ngModel)]="user.date" #date="ngModel" required
-                                class="form-control" id="date" placeholder="Date, Example: 30/01/2023">
+                                class="form-control" id="date" placeholder="Date, Example: 2023-05-06">
                             <small class="text-danger ms-3" [hidden]="date.valid || (date.pristine && !f.submitted)">
                                 Date is required
                             </small>
                         </div>
                         <div class="col-lg-4 col-md-6">
                             <input type="text" class="form-control" name="time" [(ngModel)]="user.time" #time="ngModel"
-                                required id="time" placeholder="Time, Example: 24HR Time">
+                                required id="time" placeholder="Time, Ex: 12:30:45 24H">
                             <small class="text-danger ms-3" [hidden]="time.valid || (time.pristine && !f.submitted)">
                                 Time is required
                             </small>
@@ -111,7 +112,7 @@
                         </div>
                     </div>
                     <div class="form-group mt-3">
-                        <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>
+                        <textarea class="form-control" name="message" rows="5" [(ngModel)]="user.message" #message="" placeholder="Message"></textarea>
                     </div>
                     <div class="mb-3">
                         <div class="loading">Loading</div>
@@ -119,7 +120,7 @@
                         <div class="sent-message">Your booking request was sent. We will call back or send an Email to
                             confirm your reservation. Thank you!</div>
                     </div>
-                    <div class="text-center"><button type="submit">Book a Table</button></div>
+                    <div class="text-center"><button type="submit" (click)="ngSubmit(f.value)">Book a Table</button></div>
                 </form>
             </div><!-- End Reservation Form -->
 

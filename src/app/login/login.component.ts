@@ -11,10 +11,10 @@ export class LoginComponent implements OnInit{
   constructor(private UserService:UserService, public router:Router){}
   values:any;
   register(values:any){
-    // console.log(values);
+    // 
     this.values = values;
         this.UserService.createUser(this.values).subscribe((response:any)=>{
-      console.log(response);
+      
     })
   }
    
@@ -24,11 +24,17 @@ export class LoginComponent implements OnInit{
    
   login(values:any){
     this.values = values;
-    // console.log(values);
+    // 
     this.UserService.loginUser(this.values).subscribe((response:any)=>{
-  console.log(response);
+  
   localStorage.setItem("user_id", response.user.id);
-  this.router.navigate(['']);
+  if(response.user.role==1){
+    localStorage.setItem("role",response.user.role);
+    this.router.navigate(['admin']);
+  }
+  else{
+    this.router.navigate(['']);
+  }
 })
   }
 

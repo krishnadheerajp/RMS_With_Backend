@@ -1,13 +1,19 @@
 import { Component } from '@angular/core';
 import {User} from '../user.interface';
+import { ItemService } from '../services/item.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent {
-  public user!: User; // our model
-  ngOnInit() { // we will initialize our form here
+  user_id:number=Number(localStorage.getItem("user_id"));
+  msg:any;
+  constructor( private itemService:ItemService,public router:Router) 
+  {}
+  public user!: User; 
+  ngOnInit() { 
    this.user = {
    name: '',
    email: '',
@@ -15,12 +21,22 @@ export class AboutComponent {
    date: '',
    time: '',
    nop: 0,
-   msg: ''
-   // set default value to 8000
+   message: ''
    }
+   if(this.user_id==0){
+    this.msg="Please login before booking the table";
+   }
+
    };
-   save(model: User, isValid: boolean) 
-   { 
-   // check if model is valid// if valid, call API to save customer
-   console.log(model, isValid); } 
+  
+   ngSubmit(data:any)
+   {
+    if(this.user_id==0){
+      this.router.navigate(['login']);
+    }
+     this.itemService.Book_table(data).subscribe((response:any)=>{
+       
+     })
+   };
+
 }

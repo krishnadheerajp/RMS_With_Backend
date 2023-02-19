@@ -15,6 +15,7 @@ ngOnInit(){
 
 logout(){
   localStorage.removeItem("user_id");
+  localStorage.removeItem("role");
   location.reload();
   // this.router.navigate(['']);
 }

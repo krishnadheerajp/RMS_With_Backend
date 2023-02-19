@@ -5,5 +5,5 @@ export interface User {
     date: string;
     time: string;
     nop: number;
-    msg: string;
+    message: string;
 }

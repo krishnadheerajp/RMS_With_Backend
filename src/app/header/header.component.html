@@ -33,6 +33,7 @@
         <a class="btn-book-a-table" *ngIf="user_id==undefined" routerLink="login">Sign Up / Login</a>
         <a class="btn-book-a-table" *ngIf="user_id!=undefined" (click)="logout()">Logout</a>
         <button routerLink="cart" *ngIf="user_id!=undefined"  class="btn btn-outline-danger"><i class="bi bi-cart"></i> My Cart</button>
+        <button routerLink="order" *ngIf="user_id!=undefined"  class="btn btn-outline-danger"><i class="bi bi-box2-heart"></i> My Orders</button>
         <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
         <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 

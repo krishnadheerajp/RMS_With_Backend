@@ -21,7 +21,7 @@ cart:any;
 constructor(private itemService:ItemService,public router:Router){}
 ngOnInit(){
   this.itemService.getUserCartItems().subscribe((response:any)=>{
-    console.log(response);
+    
     if(this.user_id==0){
       this.breakfastItems=response[0].products;
       this.starterItems=response[1].products;
@@ -44,12 +44,12 @@ addToCart(product_id:any,product_price:any){
   }
   else{
     this.data={"user_id":this.user_id,"product_id":product_id,"amount":product_price};
-    console.log(this.data);
+    
     this.itemService.addtoCartItems(this.data).subscribe((response:any)=>{
-      console.log(response);
+      
       if(response.success===true){
         this.cart=response.cartProducts;
-        // console.log(this.cart);
+        // 
       }
     });
   }
@@ -58,7 +58,7 @@ addToCart(product_id:any,product_price:any){
   checkInCart(product:any){
     if(this.user_id!=0){
       let cp=this.cart.find((p:any)=>{
-        // console.log(p.pivot.user_id==4,p.pivot.product_id==product.id);
+        // 
         return p.pivot.user_id==this.user_id && p.pivot.product_id==product.id;
       })
       if(cp===undefined){
@@ -72,7 +72,7 @@ addToCart(product_id:any,product_price:any){
     this.itemService.removeFromCart(this.user_id,product_id).subscribe((response:any)=>{
         if(response.success===true){
           this.cart=response.cartProducts;
-          // console.log(this.cart);
+          // 
         }
     });
   }
