@@ -239,3 +239,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
+
+const toggleForm = () => {
+  const container = document.querySelector('.frmcon');
+  container.classList.toggle('active');
+};
+

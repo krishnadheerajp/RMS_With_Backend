@@ -12,7 +12,6 @@ export const router: Routes=[
     {path: 'item/:id',component:SelItemComponent},
     {path: 'order', component:OrderComponent},
     {path: 'admin', component:AdminComponent}
-
 ];
 
 export const routes = RouterModule.forRoot(router);

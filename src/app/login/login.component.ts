@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 
+declare function toggleForm():any;
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,11 +11,15 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit{
   constructor(private UserService:UserService, public router:Router){}
   values:any;
+  msg:any;
   register(values:any){
     // 
     this.values = values;
         this.UserService.createUser(this.values).subscribe((response:any)=>{
-      
+          if(response){
+            toggleForm();
+            this.msg="Please login with your new credentials";
+          }
     })
   }
    
@@ -24,7 +29,6 @@ export class LoginComponent implements OnInit{
    
   login(values:any){
     this.values = values;
-    // 
     this.UserService.loginUser(this.values).subscribe((response:any)=>{
   
   localStorage.setItem("user_id", response.user.id);
@@ -39,3 +43,4 @@ export class LoginComponent implements OnInit{
   }
 
 }
+

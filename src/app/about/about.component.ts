@@ -34,8 +34,10 @@ export class AboutComponent {
     if(this.user_id==0){
       this.router.navigate(['login']);
     }
-     this.itemService.Book_table(data).subscribe((response:any)=>{
-       
+     this.itemService.Book_table(data).subscribe((response:any)=>{  
+        if(response.success==true){
+          this.msg=response.message;
+        }
      })
    };
 

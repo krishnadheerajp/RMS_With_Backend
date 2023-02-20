@@ -33,7 +33,9 @@ export class ContactComponent {
     }
     
     this.itemService.contactItem(data).subscribe((response:any)=>{
-      
+      if(response.success==true){
+        this.msg=response.message;
+      }
     });
   }
 }

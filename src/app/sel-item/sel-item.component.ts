@@ -54,7 +54,6 @@ addToCart(product_id:any,product_price:any){
   checkInCart(product:any){
     if(this.user_id!=0){
       let cp=this.cart.find((p:any)=>{
-        // 
         return p.pivot.user_id==this.user_id && p.pivot.product_id==product.id;
       })
       if(cp===undefined){
